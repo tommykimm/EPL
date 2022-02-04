@@ -56,10 +56,10 @@ def mancity():
     def index():
         if request.method == "POST":
             details = request.form
-            id = details['id']
+            id = len(get_data())+1
             comment = details['comment']
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO MyUsers(id, comment) VALUES (%s, %s)", (id, comment))
+            cur.execute("INSERT INTO MyUsers(id, comment) VALUES (%s, %s)", ( id, comment))
             mysql.connection.commit()
             cur.close()
         
