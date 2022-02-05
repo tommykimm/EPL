@@ -10,6 +10,7 @@ app.config['MYSQL_DB'] = 'practice'
 
 mysql = MySQL(app)
 
+#changed data
 
 def get_data():
     cur = mysql.connection.cursor()
