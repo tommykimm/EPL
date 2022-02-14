@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="static/images2/epl.png" href="static/images2/epl.png">
+    <title>
+        EPL Pages
+    </title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="wrapper">
+                <h4 class="title icon" >Seasons</h4>
+                <ul class="dropdown">
+                    {% for row in dropdown %}
+                    <li><a href="/seasonspage?id={{row.id}}&years={{row.years}}">{{ row.years }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <script type="text/javascript">
+                const wrapper = document.querySelector(".wrapper");
+                wrapper.addEventListener("click",(ev) => {
+                let el = ev.target.parentElement;
+                if (el == wrapper || el.parentElement == wrapper) {
+                    wrapper.classList.toggle("active");
+                }
+                });
+            </script>
+        </header>
+        
+        <section class="content">
+            <div class="tables">
+                <h2>Tables</h2>
+                <div class ="example1">
+                     
+                
+                <div class="example2">
+                    <table id="tables1">
+                        {% if result %}
+                            <thead>
+                                <!-- <tr id="row">
+                                    <th>Name</th>
+                                    <th>Points</th>
+                                </tr> -->
+                            </thead>
+                        {% for row in result %}
+                            <tbody>
+                                <tr id="tables">
+                                    <tr>
+                                        <td>{{ row.standings }}</td>
+                                        <td>{{ row.teams }}</td>
+                                        <td>{{ row.points }}</td>
+                                    </tr>
+                                </tr>
+                
+                        {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="tables2">
+                    <table id="2">
+                            {% if winner %}
+                                <thead>
+                                    <tr id="row2">
+                                        <th>Seasons</th>
+                                        <th>Winners</th>
+                                    </tr>
+                                </thead>
+                            {% for row in winner %}
+                                <tbody>
+                                    <tr id="tables2">
+                                        <td>{{ row.years2 }}</td>
+                                        <td>{{ row.teams }}</td>
+                                    </tr>
+                            {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% endif %}
+                    </table>
+                </div>
+            </div>
+           
+            <main>
+              <div class="main1">
+                <div class="logo">
+                    <a href="/homepage"><img src="static/images/logo.svg" alt="pllogo" id="football"></a>
+                </div>
+                <div class="header">
+                    <h1>PREMIER <br> LEAGUE</h1>
+                    <div class="year">
+                        <h2>{{seasons}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="picture" >
+                    <section class="pictures">
+                            {% for i in image %}
+                                <div id="testTest">
+                                    {{i.Photo|safe}}
+                                </div>
+                            {% endfor %}
+                    </section>
+                </div>
+            </div>
+            </main>
+        </section>
+
+        <footer>
+            <section class="logos">
+                <a href="https://www.ea.com/sports"><img src="static/images/easports.svg" alt="pic1"  id= "easports"  ></a>
+                <a href="https://www.barclays.co.uk"><img src="static/images/barclays.svg" alt="pic1" id="barclays"></a>
+                <a href="https://www.castrol.com"><img src="static/images/castrol.svg" alt="pic1" id="castrol"></a>
+                <a href="https://www.nike.com/"><img src="static/images/nike.svg" alt="pic1" id="nike"></a>
+            </section>
+            <h6 id= "h6">official sponsors</h6>
+        </footer>
+    </div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="static/css/styles2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="static/images2/epl.png" href="static/images2/epl.png">
+    {% for i in designs %}
+    <style>
+        header{
+        /* border: 5px solid green; */
+        width: 100%;
+        min-height: 350px;
+        background: linear-gradient(0.25turn ,{{i.color}});
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        }
+
+        #pic1{
+            width: 130px;
+            height: 130px;
+            /* border: 2px solid red; */
+            margin-top: 13px;
+        }
+        .dot
+            {
+            border: 2px red solid;
+            border:1px solid grey;
+            height: 150px;
+            width: 150px;
+            background-color: white;
+            border-radius: 50%;
+            display: inline-block;
+            margin-top: -120px;
+            position: relative;
+        }
+
+        footer{
+            margin-top: 0px;
+            /* border: 5px solid yellow; */
+            height:70px;
+            width: 100%;
+            text-align: center;
+            padding-top: 0px;
+            background: linear-gradient(0.25turn , {{i.color}} );
+        }
+    </style>
+    {% endfor %}
+</head>
+<body>
+    <header>
+            <div class="logo">
+                <img src="static/images/mancitystadium.webp" alt="mancity" id="pic">
+                <a href="/homepage"><img src="static/images/logo.svg" alt="pllogo" id="football"></a>
+            </div>
+            <span class="dot">
+                {% for i in designs %}
+                    <img src="{{i.link}}" alt="pic1" id="pic1">
+                {% endfor %}
+            </span>
+                {% for i in title %}
+            <h1>{{i.teams}}</h1>
+                {% endfor %}
+    </header>
+    <main>
+        <div class="container">
+          <div class="tablebox">
+                <!-- results table -->
+                <div class="results">
+                    <div class="results_0">
+                        <h4 id="results_1">Results</h4>
+                        <table id="resultstable">
+                                {% if result %}
+                                    <!-- <thead>
+                                        <tr id="resultsid">
+                                            <th id="results">Results</th>
+                                        </tr>
+                                    </thead> -->
+                                {% for row in result %}
+                                    <tbody>
+                                        <tr id="tables2">
+                                            <td id="dates">{{ row.dates }}</td>
+                                            <td id="teams">{{ row.teams }}</td>
+                                            <td id="scores">{{ row.scores }}</td>
+                                            <td id="teams2">{{ row.teams2 }}</td>
+                                            <td id="outcomes">{{ row.outcomes }}</td>
+                                        </tr>
+                                {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% endif %}
+                        </table>
+                    </div>
+                </div>
+                <!-- topscorers table -->
+                <div class="resultstable2">
+                    <h4 id="topscorers_1">Top Scorers</h4>
+                    <table id="topscorers">
+                            {% if winners %}
+                            {% for row in winners %}
+                                <tbody>
+                                    <tr id="tables2">
+                                        <td id="player">{{ row.player }}</td>
+                                        <td>{{ row.goals }}</td>
+                                    </tr>
+                            {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% endif %}
+                    </table>
+                </div>
+                <!-- form section -->
+                <div class='form'>
+                    <h4 id="form_1">Add Comment</h4>
+                        {% for row in hello %}
+                        <form action="/arsenal?id={{row.id}}" class="container1" method="POST">
+                            <input type = "hidden" id="id" name="id" placeholder="ID"/> <br>
+                            <input type="text" id="comment" name="comment" placeholder="Enter comment" required>
+                            <button id="post">{{row.comment}}</button>
+                        {% endfor %}
+                        <ul>
+                            {% for text in data %}
+                            <li> {{ text}} </li>
+                            {% endfor %}
+                        </ul>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+            <a href="https://www.ea.com/sports"><img src="static/images/easports.svg" alt="pic1"  id= "easports"  ></a>
+            <a href="https://www.barclays.co.uk"><img src="static/images/barclays.svg" alt="pic1" id="barclays"></a>
+            <a href="https://www.castrol.com"><img src="static/images/castrol.svg" alt="pic1" id="castrol"></a>
+            <a href="https://www.nike.com/"><img src="static/images/nike.svg" alt="pic1" id="nike"></a>
+    </footer>
+</body>

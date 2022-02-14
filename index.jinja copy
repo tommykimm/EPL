@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> EPL Page</title>
+    <link rel="stylesheet" href="static/css/stylefinal.css">
+    <link rel="icon" type="static/images2/epl.png" href="static/images2/epl.png">
+</head>
+<body>
+    <!-- first page -->
+    <section id="first">
+        <div class="excludefooter">
+            <div class="circle"></div>
+            <div class="circle2"></div>
+            <header>
+                <a href="#"><img src="static/images2/logo.svg" alt="pic" class="logo"></a>
+                <ul>
+                    <li class="wrapper1">
+                        <h4 class="title icon">Home</h4>
+                    <li class="wrapper2">
+                        <h4 class="title icon">Sponsors</h4>
+                    <li class="wrapper3">
+                        <h4 class="title icon">Seasons</h4>
+                        <ul class="dropdown">
+                            {% for row in dropdown %}
+                            <li><a id="tag" href="/seasonspage?id={{row.id}}&years={{row.years}}">{{ row.years }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    <li class="wrapper4">
+                        <h4 class="title icon">News</h4>
+            </header>
+            <script type="text/javascript">
+                const wrapper = document.querySelector(".wrapper3");
+                wrapper.addEventListener("click", (ev) => {
+                    let el = ev.target.parentElement;
+                    if (el == wrapper || el.parentElement == wrapper) {
+                        wrapper.classList.toggle("active");
+                    }
+                });
+            </script>
+            <div class="content">
+                <div class="textbox">
+                    <h2 class="h2">It's the <span>Premier League</span></h2>
+                    <p> <br>The Premier League, also known exonymously as the English Premier League or the EPL (legal
+                        name: The Football Association Premier League Limited), is the top level of the English football
+                        league system.</p>
+                    <a href="#sec" id="btn">Learn more</a>
+                </div>
+            <!-- dropdown -->
+            </div>
+            <ul class="social">
+                <li><a href="#"><img src="static/images2/facebook.png"></a></li>
+                <li><a href="#"><img src="static/images2/twitter.png" alt=""></a></li>
+                <li><a href="#"><img src="static/images2/instagram.png" alt=""></a></li>
+            </ul>
+            <div class="slider">
+                <div class="slides">
+                    <!-- radio button start -->
+                    <input type="radio" name="radio-btn" id="radio1">
+                    <input type="radio" name="radio-btn" id="radio2">
+                    <input type="radio" name="radio-btn" id="radio3">
+                    <!-- radio button end -->
+
+                    <!-- slide images start -->
+                    <div class="slide first">
+                        <img src="static/images2/img3.jpg" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="static/images2/img2.jpg" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="static/images2/img1.jpg" alt="">
+                    </div>
+                    <!-- slide images end -->
+                </div>
+                <!-- automatic navigation start -->
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                </div>
+                <!-- manual navigation start-->
+                <div class="navigation-manual">
+                    <label for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+                </div>
+                <!-- manual navigation end-->
+                <script>
+                    var counter = 1;
+                    setInterval(function () {
+                        document.getElementById('radio' + counter).checked = true;
+                        counter++;
+                        if (counter > 3) {
+                            counter = 1;
+                        }
+                    }, 5000);
+                </script>
+            </div>
+        </div>
+        <footer>
+            <div class="logos">
+                <a href="https://www.ea.com/sports"><img src="static/images/easports.svg" alt="pic1" id="easports"></a>
+                <a href="https://www.barclays.co.uk"><img src="static/images/barclays.svg" alt="pic1" id="barclays"></a>
+                <a href="https://www.castrol.com"><img src="static/images/castrol.svg" alt="pic1" id="castrol"></a>
+                <a href="https://www.nike.com/"><img src="static/images/nike.svg" alt="pic1" id="nike"></a>
+            </div>
+            <h6 id="h6">official sponsors</h6>
+        </footer>
+    </section>
+
+    <!-- second page -->
+    <div class="second" id="sec">
+        <div class="part1">
+            <h2> <span> EPL Standings </span> </h2>
+            <div class="pictures">
+                {% for i in display %}
+                  <div id="testTest2">
+                  <a href="/teams?id={{i.teams}}"><img style="width:40px;" src="{{i.link}}" alt="images" id="imagefinal"></a>
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="content1">
+            <div class="main1">
+                <div class="tables">
+                    <!-- <h2>Tables</h2> -->
+                    <img src="static/images2/pink.png" alt="pink" id="pink">
+                    <div class="tables1">
+                        <table id="tables_1">
+                            {% if result %}
+                            <thead>
+                                <!-- <tr id="row">
+                                        <th>Name</th>
+                                        <th>Points</th>
+                                    </tr> -->
+                            </thead>
+                            {% for row in result %}
+                            <tbody>
+                                <tr id="tables">
+                                <tr>
+                                    <td>{{ row.standings }}</td>
+                                    <td>{{ row.teams }}</td>
+                                    <td>{{ row.points_8 }}</td>
+                                </tr>
+                                </tr>
+
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endif %}
+                    </div>
+                    <div class="tables2">
+                        <table id="2">
+                            {% if winner %}
+                            <thead>
+                                <tr id="row2">
+                                    <th>Seasons</th>
+                                    <th>Winners</th>
+                                </tr>
+                            </thead>
+                            {% for row in winner %}
+                            <tbody>
+                                <tr id="tables2">
+                                    <td>{{ row.years }}</td>
+                                    <td>{{ row.teams }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endif %}
+                        </table>
+                    </div>
+                </div>
+                <div class="wrap">
+                    <div class="main1_1">
+                        <a href="#first" id="btn"><img src="static/images/logo.svg" alt="pllogo" id="football"></a>
+                        <h1>PREMIER LEAGUE <br> <span id="title1">{{seasons}}</span></h1>
+                        <!-- <p> This seasons winners are Manchester City</p> -->
+                        <div class="main1_2">
+                            <p>This years winners are: {{team}} <br>
+                                Manchester City have been crowned Premier League Champions for the third time in four
+                                years.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
